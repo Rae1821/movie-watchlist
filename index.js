@@ -15,9 +15,7 @@ let darkMode = localStorage.getItem('darkMode')
 console.log(localStorage)
 
 const enableDarkMode = () => {
-    //add the class dark mode to the body
     document.body.classList.add('darkmode')
-    //change icon for darkmode button
     darkModeToggle.classList.remove('fa-moon')
     darkModeToggle.classList.add('fa-sun')
     //update darkmode in local storage
@@ -25,9 +23,7 @@ const enableDarkMode = () => {
 }
 
 const disableDarkMode = () => {
-    //remove the class dark mode to the body
     document.body.classList.remove('darkmode')
-    //change icon for darkmode button
     darkModeToggle.classList.add('fa-moon')
     darkModeToggle.classList.remove('fa-sun')
     //update darkmode in local storage
@@ -71,10 +67,10 @@ if(searchBtn) {
 //fetch movie info from search
 function handleSearch() {
     let searchInput = input.value
-    fetch(`http://www.omdbapi.com/?s=${searchInput}&type=movie&apikey=f22aaadf`)
+    fetch(`https://www.omdbapi.com/?s=${searchInput}&type=movie&apikey=f22aaadf`)
         .then(res => res.json())
         .then(data => {
-            //console.log(data)
+            console.log(data)
             renderMovieHtml(data.Search)
     })
 }
@@ -85,7 +81,7 @@ function renderMovieHtml(movieResults) {
     for(let i = 0; i < movieResults.length; i++) {
         let movieTitle = movieResults[i].Title
        
-        fetch(`http://www.omdbapi.com/?t=${movieTitle}&apikey=f22aaadf`)
+        fetch(`https://www.omdbapi.com/?t=${movieTitle}&apikey=f22aaadf`)
             .then(res => res.json())
             .then(movie => {
                 console.log(movie)
@@ -145,7 +141,7 @@ function renderWatchlist() {
 
     let watchlistHtml = ''
     for(let movie of watchlistArray) {
-        fetch(`http://www.omdbapi.com/?i=${movie}&type=movie&apikey=f22aaadf`)
+        fetch(`https://www.omdbapi.com/?i=${movie}&type=movie&apikey=f22aaadf`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
