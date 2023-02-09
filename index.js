@@ -1,9 +1,5 @@
 const movies = document.getElementById('movies')
-const input = document.getElementById('input')
 const searchBtn = document.getElementById('search-btn')
-const searchContainer = document.getElementById('search-container')
-
-
 const watchlistEl = document.getElementById('movie-watchlist')
 const body = document.getElementById('body')
 const darkModeToggle = document.getElementById('dark-mode-toggle')
@@ -30,12 +26,24 @@ const disableDarkMode = () => {
     localStorage.setItem('darkMode', null)
 }
 
+const searchBoxEnableDarkMode = () => {
+    searchBtn.classList.add('darkmode')
+    document.querySelector('input').classList.add('darkmode')
+    document.querySelector('search-box').classList.add('darkmode')
+}
+
+const searchBoxDisableDarkMode = () => {
+    searchBtn.classList.remove('darkmode')
+    document.querySelector('input').classList.remove('darkmode')
+    document.querySelector('search-box').classList.remove('darkmode')
+}
+
 const enableDarkModeWatchlist = () => {
-    watchlistEl.classList.add('darkmode')
+    watchlistEl.classList.toggle('darkmode')
 }
 
 const disableDarkModeWatchlist = () => {
-    watchlistEl.classList.remove('darkmode')
+    watchlistEl.classList.toggle('darkmode')
 }
 
 if(darkMode === 'enabled') {
@@ -46,9 +54,11 @@ darkModeToggle.addEventListener('click', () => {
     darkMode = localStorage.getItem('darkMode')
     if(darkMode !== 'enabled') {
         enableDarkMode()
+        searchBoxEnableDarkMode()
         enableDarkModeWatchlist()
     } else {
         disableDarkMode()
+        searchBoxDisableDarkMode()
         disableDarkModeWatchlist()
     }
 })
