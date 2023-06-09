@@ -112,18 +112,19 @@ i.fa-sun {
 .search-box {
     display: flex;
     align-items: center;
-    border-radius: 6px;
+    background-color: #fff;
+    border: none;
 }
 
 .search-container {
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
-    border: 1px solid #D1D5DB;
+    border: 1px solid #fcfcfc;
     border-radius: 6px;
     box-shadow: 0px 1px 2px rgba(0,0,0,.05);
-    position: relative;
-    top: -10px;
+    position: absolute;
+    top: 30%;
     left: 0;
     z-index: 100;
     
@@ -147,7 +148,6 @@ i.fa-sun {
 button.search-btn {
     border: none;
     border-left: 1px solid #D1D5DB;
-    color: #374151;
     padding: .5em 1em;
     cursor: pointer;
     border-top-right-radius: 6px;
@@ -160,7 +160,7 @@ button.search-btn {
 /*******************/
 
 .movie-container {
-    padding: 3em;
+    padding: 1em;
 }
 
 .movie-container.dark {
@@ -172,11 +172,13 @@ button.search-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .fa-film {
     font-size: 5rem;
     color: #D1D5DB;
+    padding-top: 1em;
 }
 
 p.placeholder {
@@ -187,20 +189,27 @@ p.placeholder {
 }
 
 .movie-list {
-    margin: auto;
-    display: grid;
-    grid-template-columns: 150px 450px;
-    grid-template-rows: 50px 50px 100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border-bottom: 1px solid #E5E7EB;
     padding-bottom: 2em;
     padding-top: 2em;
     background-color: transparent;
 }
 
+
+.movie-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 90%;
+}
+
 .movie-img {
-    grid-column: 1 / 2;
-    grid-row: 1 / -1;
-    width: 100%;
+    width: 75%;
+    max-width: 100%;
 }
 
 .movie-poster {
@@ -208,17 +217,16 @@ p.placeholder {
 }
 
 .movie-header {
-   grid-column: 2 / -1;
-   grid-row: 1 / 2;
    display: flex;
    justify-content: flex-start;
    align-items: flex-end;
+   margin: 2em 0 .5em;
    
 }
 
 .movie-title {
     font-weight: 600;
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 
 .fa-star {
@@ -228,11 +236,11 @@ p.placeholder {
 
 
 .movie-subheader {
-   grid-column: 2 / -1;
-   grid-row: 2 / 3;
    display: flex;
    justify-content: space-between;
    align-items: center;
+   margin: .5em 0;
+
 }
 
 .movie-runtime {
@@ -256,17 +264,44 @@ p.placeholder {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    padding: .25em;
+    padding: .25em .5em;
+}
+
+span i.fa-circle-plus {
+    
+    font-size: .70rem;
 }
 
 .movie-description {
-    grid-column: 2 / -1;
-    grid-row: 3 / 4;
-    font-size: 0.875rem;
-    line-height: 1.5;
+    margin-top: .5em;
+    line-height: 1.6;
     font-weight: 300;
 }
 
+/****** media queries *******/
+
+@media (min-width: 768px) {
+    .movie-list {
+        flex-direction: row;
+        max-width: 600px;
+    }
+
+    .movie-info {
+        width: 60%;
+    }
+
+    .movie-img {
+        width: 30%;
+    }
+
+    .movie-title {
+        font-size: 1.25rem;
+    }
+
+    .movie-poster {
+        padding-right: 2em;
+    }
+}
 
 /*******************/
 /* Watchlist Page  */
@@ -294,6 +329,7 @@ p.placeholder {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .add-movie-watchlist {

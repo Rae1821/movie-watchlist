@@ -100,18 +100,24 @@ function renderMovieHtml(movieResults) {
                     <div class="movie-img"> 
                         <img class="movie-poster" src=${movie.Poster} />
                     </div>
-                    <div class="movie-header">
-                        <h2 class="movie-title">${movie.Title}</h2>
-                        <i class="fa-solid fa-star"></i>
-                        <p class="movie-rating">${movie.imdbRating}</p>
-                    </div>
-                    <div class="movie-subheader">
-                        <p class="movie-runtime">${movie.Runtime}</p>
-                        <p class="genre">${movie.Genre}</p>
-                        <span class="add-movie" data-movie-id-add="${movie.imdbID}">Add To Watchlist</span>
-                    </div>
-                    <div class="movie-description">
-                        <p class="description">${movie.Plot}</p>
+                    <div class="movie-info">
+                        <div class="movie-header">
+                            <h2 class="movie-title">${movie.Title}</h2>
+                            <i class="fa-solid fa-star"></i>
+                            <p class="movie-rating">${movie.imdbRating}</p>
+                        </div>
+                        <div class="movie-subheader">
+                            <p class="movie-runtime">${movie.Runtime}</p>
+                            <p class="genre">${movie.Genre}</p>
+                            <p class="add-movie">
+                                <span>
+                                    <i class="fa-solid fa-circle-plus" data-movie-id-add="${movie.imdbID}">watchlist</i>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="movie-description">
+                            <p class="description">${movie.Plot}</p>
+                        </div>
                     </div>
                 </div>
                 `
@@ -127,7 +133,7 @@ document.addEventListener('click', (e) => {
     let movieRemoved = e.target.dataset.movieIdRemove
 
     if(movieAdded) {
-        e.target.textContent = 'Added'
+        e.target.textContent = 'added'
         addMovieToWatchlist(movieAdded)
        
     } else if(movieRemoved) {
@@ -157,23 +163,25 @@ function renderWatchlist() {
                 console.log(data)
                 watchlistHtml += `
                 <div class="movie-list">
-                <div class="movie-img"> 
-                    <img class="movie-poster" src=${data.Poster} />
+                        <div class="movie-img"> 
+                            <img class="movie-poster" src=${data.Poster} />
+                        </div>
+                        <div class="movie-info">
+                            <div class="movie-header">
+                                <h2 class="movie-title">${data.Title}</h2>
+                                <i class="fa-solid fa-star"></i>
+                                <p class="movie-rating">${data.imdbRating}</p>
+                            </div>
+                            <div class="movie-subheader">
+                                <p class="movie-runtime">${data.Runtime}</p>
+                                <p class="genre">${data.Genre}</p>
+                                <span class="remove-movie" data-movie-id-remove="${data.imdbID}">remove</span>
+                            </div>
+                            <div class="movie-description">
+                                <p class="description">${data.Plot}</p>
+                            </div>
+                        </div>
                 </div>
-                <div class="movie-header">
-                    <h2 class="movie-title">${data.Title}</h2>
-                    <i class="fa-solid fa-star"></i>
-                    <p class="movie-rating">${data.imdbRating}</p>
-                </div>
-                <div class="movie-subheader">
-                    <p class="movie-runtime">${data.Runtime}</p>
-                    <p class="genre">${data.Genre}</p>
-                    <span class="remove-movie" data-movie-id-remove="${data.imdbID}">Remove from watchlist</span>
-                </div>
-                <div class="movie-description">
-                    <p class="description">${data.Plot}</p>
-                </div>
-            </div>
                 `
                 watchlistEl.innerHTML = watchlistHtml
             })
